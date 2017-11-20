@@ -1,7 +1,7 @@
 # Личный проект «Кексобукинг» [![Build status][travis-image]][travis-url]
 
 * Студент: [Екатерина Елесова](https://up.htmlacademy.ru/javascript/11/user/139515).
-* Наставник: `Неизвестно`.
+* Наставник: Анна Тюрина (https://htmlacademy.ru/profile/id549147).
 
 ---
 
