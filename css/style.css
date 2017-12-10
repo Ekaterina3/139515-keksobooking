@@ -132,6 +132,10 @@ textarea:focus {
   overflow: hidden;
 }
 
+.feature.hidden {
+  display: none;
+}
+
 .feature--dishwasher {
   background-position: 0 2px;
 }
