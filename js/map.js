@@ -201,7 +201,7 @@ var removeActivePins = function (elem) {
   if (activePin) {
     activePin.classList.remove('map__pin--active');
   }
-  if (elem !== undefined) {
+  if (elem) {
     elem.classList.add('map__pin--active');
   }
 
@@ -223,13 +223,13 @@ var activateMap = function () {
     elem.disabled = false;
   });
 
-  mapPins.forEach(function (elem, i) {
+  mapPins.forEach(function (elem, index) {
     showElement(elem);
 
     elem.addEventListener('click', function () {
-      removeActivePins(this);
+      removeActivePins(elem);
       showElement(popup);
-      renderCard(offers[i]);
+      renderCard(offers[index]);
       document.addEventListener('keydown', onPopupEscape);
     });
   });
