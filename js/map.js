@@ -51,7 +51,7 @@ var getRandomArray = function (array) {
 
 var createObject = function () {
   var locationX = getRandomNumber(300, 900);
-  var locationY = getRandomNumber(300, 900);
+  var locationY = getRandomNumber(100, 500);
 
   return {
     author: {
@@ -135,26 +135,33 @@ var renderCard = function (pinData) {
   var endForRooms = '';
   var endForGuests = '';
 
-  switch (pinData.offer.rooms) {
-    case 1:
-      endForRooms = 'комната';
-      break;
-    case 5:
-      endForRooms = 'комнат';
-      break;
-    default:
-      endForRooms = 'комнаты';
-      break;
-  }
+  var setEndForRooms = function (count) {
+    var surplus = count % 10;
 
-  switch (pinData.offer.guests) {
-    case 1:
-      endForGuests = 'гостя';
-      break;
-    default:
-      endForGuests = 'гостей';
-      break;
-  }
+    if (surplus === 1) {
+      endForRooms = (count === 11) ? 'комнат' : 'комната';
+    } else if (surplus >= 5) {
+      endForRooms = 'комнат';
+    } else {
+      endForRooms = (count >= 12 && count <= 14) ? 'комнат' : 'комнаты';
+    }
+  };
+
+  var setEndForGuests = function (count) {
+    var surplus = count % 10;
+
+    switch (surplus) {
+      case 1:
+        endForGuests = (count === 11) ? 'гостей' : 'гостя';
+        break;
+      default:
+        endForGuests = 'гостей';
+        break;
+    }
+  };
+
+  setEndForRooms(pinData.offer.rooms);
+  setEndForGuests(pinData.offer.guests);
 
   cardElement.querySelector('.map__card h4 + p').textContent = pinData.offer.rooms + ' ' + endForRooms + ' для ' + pinData.offer.guests + ' ' + endForGuests;
   cardElement.querySelector('.map__card p:nth-of-type(4)').textContent = 'Заезд после ' + pinData.offer.checkin + ', выезд до ' + pinData.offer.checkout;
