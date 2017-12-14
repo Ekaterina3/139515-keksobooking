@@ -1,5 +1,7 @@
 'use strict';
 
+var ESCAPE_KEYCODE = 27;
+
 var OFFERS_TITLES = ['Большая уютная квартира', 'Маленькая неуютная квартира', 'Огромный прекрасный дворец', 'Маленький ужасный дворец', 'Красивый гостевой домик', 'Некрасивый негостеприимный домик', 'Уютное бунгало далеко от моря', 'Неуютное бунгало по колено в воде'];
 var OFFERS_TYPES = ['flat', 'house', 'bungalo'];
 var OFFERS_CHECKIN = ['12:00', '13:00', '14:00'];
@@ -167,9 +169,6 @@ pins.appendChild(renderAllPins(offers));
 renderCard(offers[0]);
 map.insertBefore(cardElement, document.querySelector('map__filters-container'));
 
-
-var ESCAPE_KEYCODE = 27;
-
 var mainPin = map.querySelector('.map__pin--main');
 var noticeForm = document.querySelector('.notice__form');
 var popup = document.querySelector('.popup');
@@ -197,7 +196,7 @@ mapPins.forEach(function (elem) {
 
 var activePin;
 
-var removeActivePins = function (elem) {
+var changeActivePins = function (elem) {
   if (activePin) {
     activePin.classList.remove('map__pin--active');
   }
@@ -227,7 +226,7 @@ var activateMap = function () {
     showElement(elem);
 
     elem.addEventListener('click', function () {
-      removeActivePins(elem);
+      changeActivePins(elem);
       showElement(popup);
       renderCard(offers[index]);
       document.addEventListener('keydown', onPopupEscape);
@@ -239,7 +238,7 @@ mainPin.addEventListener('mouseup', activateMap);
 
 var closePopup = function () {
   hideElement(popup);
-  removeActivePins();
+  changeActivePins();
 
   document.removeEventListener('keydown', onPopupEscape);
 };
