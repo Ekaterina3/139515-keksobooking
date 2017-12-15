@@ -2,12 +2,12 @@
 
 var ESCAPE_KEYCODE = 27;
 
-var OFFERS_TITLES = ['Большая уютная квартира', 'Маленькая неуютная квартира', 'Огромный прекрасный дворец', 'Маленький ужасный дворец', 'Красивый гостевой домик', 'Некрасивый негостеприимный домик', 'Уютное бунгало далеко от моря', 'Неуютное бунгало по колено в воде'];
-var OFFERS_TYPES = ['flat', 'house', 'bungalo'];
-var OFFERS_CHECKIN = ['12:00', '13:00', '14:00'];
-var OFFERS_CHECKOUT = ['12:00', '13:00', '14:00'];
-var OFFERS_FEATURES = ['wifi', 'dishwasher', 'parking', 'washer', 'elevator', 'conditioner'];
-var OFFERS_COUNT = 8;
+var TITLES = ['Большая уютная квартира', 'Маленькая неуютная квартира', 'Огромный прекрасный дворец', 'Маленький ужасный дворец', 'Красивый гостевой домик', 'Некрасивый негостеприимный домик', 'Уютное бунгало далеко от моря', 'Неуютное бунгало по колено в воде'];
+var TYPES = ['flat', 'house', 'bungalo'];
+var CHECKINS = ['12:00', '13:00', '14:00'];
+var CHECKOUTS = ['12:00', '13:00', '14:00'];
+var FEATURES = ['wifi', 'dishwasher', 'parking', 'washer', 'elevator', 'conditioner'];
+var COUNT = 8;
 var AVATARS = [];
 
 var offers = [];
@@ -20,7 +20,7 @@ var cardTemplate = document.querySelector('template').content.querySelector('.ma
 var cardElement = cardTemplate.cloneNode(true);
 var featureListItems = cardElement.querySelectorAll('.feature');
 
-for (var i = 1; i <= OFFERS_COUNT; i++) {
+for (var i = 1; i <= COUNT; i++) {
   AVATARS.push('img/avatars/user0' + i + '.png');
 }
 
@@ -60,15 +60,15 @@ var createObject = function () {
       avatar: getUniqueRandomValue(AVATARS),
     },
     offer: {
-      title: getUniqueRandomValue(OFFERS_TITLES),
+      title: getUniqueRandomValue(TITLES),
       address: locationX + ', ' + locationY,
       price: getRandomNumber(1000, 1000000),
-      type: getRandomArrayValue(OFFERS_TYPES),
+      type: getRandomArrayValue(TYPES),
       rooms: getRandomNumber(1, 5),
       guests: getRandomNumber(1, 5),
-      checkin: getRandomArrayValue(OFFERS_CHECKIN),
-      checkout: getRandomArrayValue(OFFERS_CHECKOUT),
-      features: getRandomArray(OFFERS_FEATURES),
+      checkin: getRandomArrayValue(CHECKINS),
+      checkout: getRandomArrayValue(CHECKOUTS),
+      features: getRandomArray(FEATURES),
       description: '',
       photos: []
     },
@@ -79,7 +79,7 @@ var createObject = function () {
   };
 };
 
-for (i = 1; i <= OFFERS_COUNT; i++) {
+for (i = 1; i <= COUNT; i++) {
   offers.push(createObject());
 }
 
