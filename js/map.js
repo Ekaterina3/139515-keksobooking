@@ -43,11 +43,11 @@ var getRandomNumber = function (startNumber, endNumber) {
 
 var getRandomArray = function (array) {
   var randomArray = array;
-  for (i = randomArray.length - 1; i > 0; i--) {
+  for (var j = randomArray.length - 1; j > 0; j--) {
     var index = getRandomIndex(randomArray);
     var value = randomArray[index];
-    randomArray[index] = randomArray[i];
-    randomArray[i] = value;
+    randomArray[index] = randomArray[j];
+    randomArray[j] = value;
   }
   return randomArray.slice(getRandomIndex(randomArray));
 };
