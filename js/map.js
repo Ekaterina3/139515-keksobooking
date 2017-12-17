@@ -24,15 +24,16 @@ for (var i = 1; i <= COUNT; i++) {
   AVATARS.push('img/avatars/user0' + i + '.png');
 }
 
-var getRandomArrayValue = function (array) {
-  return array[Math.floor(Math.random() * array.length)];
+var getRandomIndex = function (array) {
+  return Math.floor(Math.random() * array.length);
 };
 
 var getUniqueRandomValue = function (array) {
-  var index = Math.floor(Math.random() * array.length);
-  var value = array[index];
+  var newArray = array;
+  var index = Math.floor(Math.random() * newArray.length);
+  var value = newArray[index];
 
-  array.splice(index, 1);
+  newArray.splice(index, 1);
   return value;
 };
 
@@ -41,14 +42,14 @@ var getRandomNumber = function (startNumber, endNumber) {
 };
 
 var getRandomArray = function (array) {
-  var count = getRandomNumber(1, array.length);
-  var randomArray = [];
-
-  for (var j = 1; j <= count; j++) {
-    randomArray.push(getRandomArrayValue(array));
+  var randomArray = array;
+  for (i = randomArray.length - 1; i > 0; i--) {
+    var index = getRandomIndex(randomArray);
+    var value = randomArray[index];
+    randomArray[index] = randomArray[i];
+    randomArray[i] = value;
   }
-
-  return randomArray;
+  return randomArray.slice(getRandomIndex(randomArray));
 };
 
 var createObject = function () {
@@ -63,11 +64,11 @@ var createObject = function () {
       title: getUniqueRandomValue(TITLES),
       address: locationX + ', ' + locationY,
       price: getRandomNumber(1000, 1000000),
-      type: getRandomArrayValue(TYPES),
+      type: TYPES[getRandomIndex(TYPES)],
       rooms: getRandomNumber(1, 5),
       guests: getRandomNumber(1, 5),
-      checkin: getRandomArrayValue(CHECKINS),
-      checkout: getRandomArrayValue(CHECKOUTS),
+      checkin: CHECKINS[getRandomIndex(CHECKINS)],
+      checkout: CHECKOUTS[getRandomIndex(CHECKOUTS)],
       features: getRandomArray(FEATURES),
       description: '',
       photos: []
