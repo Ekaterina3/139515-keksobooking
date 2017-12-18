@@ -6,7 +6,7 @@
   var popup = document.querySelector('.popup');
   var popupClose = document.querySelector('.popup__close');
   var noticeFormFieldsets = noticeForm.querySelectorAll('fieldset');
-  var mainPin = window.map.querySelector('.map__pin--main');
+  window.window.mainPin = window.map.querySelector('.map__pin--main');
 
   var renderAllPins = function () {
     var fragment = document.createDocumentFragment();
@@ -70,6 +70,7 @@
 
   hideElement(popup);
 
-  mainPin.addEventListener('mouseup', activateMap);
+  window.mainPin.addEventListener('mouseup', activateMap);
   popupClose.addEventListener('click', closePopup);
+
 })();
