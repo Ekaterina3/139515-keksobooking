@@ -74,7 +74,7 @@
         switch (control.value) {
           case FILTER_RANGES[0]:
             return pinData.offer.price <= PRICE_FROM;
-          case [1]:
+          case FILTER_RANGES[1]:
             return pinData.offer.price > PRICE_FROM && pinData.offer.price < PRICE_TO;
           case FILTER_RANGES[2]:
             return pinData.offer.price >= PRICE_TO;
