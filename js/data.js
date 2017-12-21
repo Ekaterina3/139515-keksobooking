@@ -57,7 +57,7 @@
   };
 
   for (var i = 0; i < COUNT; i++) {
-    AVATARS.push('img/avatars/user0' + i + '.png');
+    AVATARS.push('img/avatars/user0' + (i + 1) + '.png');
     window.offers.push(createObject());
   }
 
