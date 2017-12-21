@@ -51,6 +51,7 @@
 
   var getCapacity = function () {
     var option = roomNumber.options[roomNumber.selectedIndex];
+
     switch (option.value) {
       case '1':
         capacity.options[0].disabled = true;

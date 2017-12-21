@@ -2,7 +2,24 @@
 
 (function () {
   var TITLES = ['Большая уютная квартира', 'Маленькая неуютная квартира', 'Огромный прекрасный дворец', 'Маленький ужасный дворец', 'Красивый гостевой домик', 'Некрасивый негостеприимный домик', 'Уютное бунгало далеко от моря', 'Неуютное бунгало по колено в воде'];
-  var TYPES = ['flat', 'house', 'bungalo'];
+  var TYPES = [
+    {
+      id: 'flat',
+      title: 'Квартира'
+    },
+    {
+      id: 'house',
+      title: 'Дом'
+    },
+    {
+      id: 'bungalo',
+      title: 'Бунгало'
+    },
+    {
+      id: 'palace',
+      title: 'Дворец'
+    }
+  ];
   var CHECKINS = ['12:00', '13:00', '14:00'];
   var CHECKOUTS = ['12:00', '13:00', '14:00'];
   var FEATURES = ['wifi', 'dishwasher', 'parking', 'washer', 'elevator', 'conditioner'];
@@ -10,10 +27,6 @@
   var AVATARS = [];
 
   window.offers = [];
-
-  for (var i = 1; i <= COUNT; i++) {
-    AVATARS.push('img/avatars/user0' + i + '.png');
-  }
 
   var createObject = function () {
     var locationX = window.helpers.getRandomNumber(300, 900);
@@ -43,8 +56,11 @@
     };
   };
 
-  for (i = 1; i <= COUNT; i++) {
+  for (var i = 0; i < COUNT; i++) {
+    AVATARS.push('img/avatars/user0' + i + '.png');
     window.offers.push(createObject());
   }
+
+  console.log(offers)
 
 })();
