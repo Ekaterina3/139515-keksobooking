@@ -46,7 +46,7 @@
         cardElement.querySelector('.map__card ul + p').textContent = pinData.offer.description;
         cardElement.querySelector('.popup__avatar').src = pinData.author.avatar;
         addPictures(cardElement, pinData);
-        window.card.fillFeatures(pinData);
+        this.fillFeatures(pinData);
       }
     }
   };
