@@ -49,7 +49,7 @@
         elem.addEventListener('click', function () {
           window.pin.changeActivePins(elem);
           window.card.renderCard(data[index]);
-          window.showCard.show(popup);
+          window.helpers.showElement(popup);
           document.addEventListener('keydown', window.showCard.onPopupEscape);
         });
       });
@@ -106,12 +106,14 @@
     checkboxFilter(featuresHousing);
     renderAllPins(filteredData);
 
-    mapPins.forEach(function (elem) {
+    var newPins = document.querySelectorAll('.map__pin:not(.map__pin--main)');
+
+    newPins.forEach(function (elem, index) {
       elem.addEventListener('click', function () {
-        window.pin.deselectPin();
-        window.pin.selectPin(elem);
-        window.showCard(filteredData);
-        document.addEventListener('keydown', window.card.onPopupEsc);
+        window.pin.changeActivePins(elem);
+        window.card.renderCard(filteredData[index]);
+        window.helpers.showElement(popup);
+        document.addEventListener('keydown', window.showCard.onPopupEscape);
       });
     });
   };
