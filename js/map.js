@@ -1,6 +1,7 @@
 'use strict';
 
 (function () {
+
   var PRICE_FROM = 10000;
   var PRICE_TO = 50000;
   var PIN_COUNT = 5;
@@ -124,5 +125,6 @@
   filterForm.addEventListener('change', function () {
     window.debounce(updatePins);
   });
+
 
 })();
