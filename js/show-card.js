@@ -6,8 +6,8 @@
   var popupClose = document.querySelector('.popup__close');
 
   window.showCard = {
-    show: function () {
-      window.helpers.showElement(popup);
+    show: function (elem) {
+      window.helpers.showElement(elem);
       popupClose.addEventListener('click', window.showCard.closePopup);
     },
 

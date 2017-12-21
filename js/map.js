@@ -53,7 +53,7 @@
         elem.addEventListener('click', function () {
           window.pin.changeActivePins(elem);
           window.card.renderCard(data[index]);
-          window.helpers.showElement(popup);
+          window.showCard.show(popup);
           document.addEventListener('keydown', window.showCard.onPopupEscape);
         });
       });
@@ -116,7 +116,7 @@
       elem.addEventListener('click', function () {
         window.pin.changeActivePins(elem);
         window.card.renderCard(filteredData[index]);
-        window.helpers.showElement(popup);
+        window.showCard.show(popup);
         document.addEventListener('keydown', window.showCard.onPopupEscape);
       });
     });
