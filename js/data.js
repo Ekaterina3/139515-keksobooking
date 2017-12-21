@@ -26,7 +26,7 @@
   var COUNT = 8;
   var avatars = [];
 
-  window.offers = [];
+  var offers = [];
 
   var createObject = function () {
     var locationX = window.helpers.getRandomNumber(300, 900);
@@ -58,7 +58,7 @@
 
   for (var i = 0; i < COUNT; i++) {
     avatars.push('img/avatars/user0' + i + '.png');
-    window.offers.push(createObject());
+    offers.push(createObject());
   }
 
 })();
