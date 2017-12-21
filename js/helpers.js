@@ -14,13 +14,10 @@
     },
 
     getUniqueRandomValue: function (array) {
-      var newArray = [];
-      window.helpers.copyArray(array, newArray);
+      var index = window.helpers.getRandomIndex(array);
+      var value = array[index];
 
-      var index = Math.floor(Math.random() * newArray.length);
-      var value = newArray[index];
-
-      newArray.splice(index, 1);
+      array.splice(index, 1);
       return value;
     },
 
