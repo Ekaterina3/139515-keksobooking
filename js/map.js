@@ -36,11 +36,15 @@
 
     var activateMap = function () {
       map.classList.remove('map--faded');
+      mainPin.removeEventListener('click', activateMap);
+
       renderAllPins(data);
+
       noticeForm.classList.remove('notice__form--disabled');
       noticeFormFieldsets.forEach(function (elem) {
         elem.disabled = false;
       });
+
       window.synchronizeFormFields();
 
       var mapPins = document.querySelectorAll('.map__pin:not(.map__pin--main)');
@@ -55,7 +59,7 @@
       });
     };
 
-    mainPin.addEventListener('mouseup', activateMap);
+    mainPin.addEventListener('click', activateMap);
   };
 
   var updatePins = function () {
@@ -127,6 +131,5 @@
   filterForm.addEventListener('change', function () {
     window.debounce(updatePins);
   });
-
 
 })();
