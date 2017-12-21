@@ -16,6 +16,7 @@
   var capacity = noticeForm.querySelector('#capacity');
   var submit = noticeForm.querySelector('.form__submit');
   var inputs = noticeForm.querySelectorAll('input');
+  // var image = noticeForm.querySelector('#images');
 
   var syncValues = function (element, value) {
     element.value = value;
@@ -58,6 +59,11 @@
     getCapacity();
   };
 
+  var resetForm = function () {
+    noticeForm.reset();
+    capacity.value = '1';
+  };
+
   var checkValidity = function () {
     var errorsNumber = 0;
 
@@ -72,7 +78,7 @@
     }
 
     if (errorsNumber === 0) {
-      noticeForm.submit();
+      window.backend.save(new FormData(noticeForm), resetForm, window.backend.errorHandler);
     }
   };
 
@@ -94,6 +100,5 @@
   houseType.addEventListener('change', OnHouseTypeChange);
   roomNumber.addEventListener('change', onRoomNumberChange);
   getCapacity();
-
   submit.addEventListener('click', onSubmitClick);
 })();

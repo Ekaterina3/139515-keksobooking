@@ -28,7 +28,7 @@
     closePopup: function () {
       window.hideElement(window.popup);
       window.pin.changeActivePins();
-      window.card.renderCard(window.offers[0]);
+      window.card.renderCard(null);
       document.removeEventListener('keydown', window.showCard.onPopupEscape);
       popupClose.removeEventListener('click', window.showCard.closePopup);
     }
