@@ -61,6 +61,4 @@
     window.offers.push(createObject());
   }
 
-  console.log(offers)
-
 })();

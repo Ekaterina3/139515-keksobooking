@@ -20,10 +20,8 @@
       switch (surplus) {
         case 1:
           return (count === 11) ? 'гостей' : 'гостя';
-          break;
         default:
           return 'гостей';
-          break;
       }
     }
   };
