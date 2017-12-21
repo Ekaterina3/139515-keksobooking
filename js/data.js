@@ -57,7 +57,7 @@
   };
 
   for (var i = 0; i < COUNT; i++) {
-    avatars.push('img/avatars/user0' + i + '.png');
+    avatars.push('img/avatars/user0' + (i + 1) + '.png');
     offers.push(createObject());
   }
 
