@@ -4,17 +4,31 @@
   var noticeForm = document.querySelector('.notice__form');
   var noticeFormFieldsets = noticeForm.querySelectorAll('fieldset');
   window.window.mainPin = window.map.querySelector('.map__pin--main');
+  var filterForm = document.querySelector('.map__filters');
+  var typeHousing = document.querySelector('#housing-type');
+  var priceHousing = document.querySelector('#housing-price');
+  var roomsHousing = document.querySelector('#housing-rooms');
+  var guestsHousing = document.querySelector('#housing-guests');
+  var featuresHousing = document.querySelectorAll('#housing-features input[type="checkbox"]');
+  var dataCopy = [];
+
+  var PRICE_FROM = 10000;
+  var PRICE_TO = 50000;
+  var PIN_COUNT = 5;
 
   var renderAllPins = function (data) {
     var fragment = document.createDocumentFragment();
+    var pinCount = data.length > PIN_COUNT ? PIN_COUNT : data.length;
 
-    for (var i = 0; i < data.length; i++) {
+    for (var i = 0; i < pinCount; i++) {
       fragment.appendChild(window.pin.renderPin(data[i]));
     }
     window.map.appendChild(fragment);
   };
 
   var successHandler = function (data) {
+    dataCopy = data.slice();
+
     var activateMap = function () {
       window.map.classList.remove('map--faded');
       renderAllPins(data);
@@ -39,10 +53,72 @@
     window.mainPin.addEventListener('mouseup', activateMap);
   };
 
+  var updatePins = function () {
+    var filteredData = dataCopy;
+    var mapPins = document.querySelectorAll('.map__pin:not(.map__pin--main)');
+    window.pin.removeAllPins(mapPins);
+
+    var selectFilter = function (control, type) {
+      if (control.value !== 'any') {
+        filteredData = filteredData.filter(function (pinData) {
+          return pinData.offer[type].toString() === control.value;
+        });
+      }
+      return filteredData;
+    };
+
+    var rangeFilter = function (control) {
+      filteredData = filteredData.filter(function (pinData) {
+        switch (control.value) {
+          case 'low':
+            return pinData.offer.price <= PRICE_FROM;
+          case 'middle':
+            return pinData.offer.price > PRICE_FROM && pinData.offer.price < PRICE_TO;
+          case 'high':
+            return pinData.offer.price >= PRICE_TO;
+          default:
+            return true;
+        }
+      });
+      return filteredData;
+    };
+
+    var checkboxFilter = function (controls) {
+      controls.forEach(function (elem) {
+        if (elem.checked) {
+          filteredData = filteredData.filter(function (pinData) {
+            return pinData.offer.features.indexOf(elem.value) !== -1;
+          });
+        }
+      });
+      return filteredData;
+    };
+
+    selectFilter(typeHousing, 'type');
+    rangeFilter(priceHousing);
+    selectFilter(roomsHousing, 'rooms');
+    selectFilter(guestsHousing, 'guests');
+    checkboxFilter(featuresHousing);
+    renderAllPins(filteredData);
+
+    mapPins.forEach(function (elem) {
+      elem.addEventListener('click', function () {
+        window.pin.deselectPin();
+        window.pin.selectPin(elem);
+        window.showCard(filteredData);
+        document.addEventListener('keydown', window.card.onPopupEsc);
+      });
+    });
+  };
+
   noticeFormFieldsets.forEach(function (elem) {
     elem.disabled = true;
   });
 
   window.backend.load(successHandler, window.backend.errorHandler);
+
+  filterForm.addEventListener('change', function () {
+    window.debounce(updatePins);
+  });
 
 })();
