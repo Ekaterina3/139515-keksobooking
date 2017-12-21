@@ -1,7 +1,7 @@
 'use strict';
 
 (function () {
-  window.map = document.querySelector('.map');
+  var map = document.querySelector('.map');
   var cardTemplate = document.querySelector('template').content.querySelector('.map__card');
   var cardElement = cardTemplate.cloneNode(true);
   var featureListItems = cardElement.querySelectorAll('.feature');
@@ -53,5 +53,5 @@
     }
   };
 
-  window.map.insertBefore(cardElement, document.querySelector('map__filters-container'));
+  map.insertBefore(cardElement, document.querySelector('map__filters-container'));
 })();

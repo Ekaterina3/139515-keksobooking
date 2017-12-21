@@ -39,6 +39,14 @@
         randomArray[j] = value;
       }
       return randomArray.slice(window.helpers.getRandomIndex(randomArray));
+    },
+
+    hideElement: function (elem) {
+      elem.classList.add('hidden');
+    },
+
+    showElement: function (elem) {
+      elem.classList.remove('hidden');
     }
   };
 })();
