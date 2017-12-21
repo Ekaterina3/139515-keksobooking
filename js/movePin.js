@@ -1,6 +1,8 @@
 'use strict';
 
 (function () {
+  var body = document.querySelector('body');
+
   var getStartCoords = function (evt) {
     return {
       x: evt.pageX,
@@ -27,13 +29,21 @@
       y: newPosition.y + pinHeight / 2 + pickHeight
     };
 
-    var topEdge = 100 - pinHeight / 2 - pickHeight;
+    var topEdge = 100 + pinHeight / 2 - pickHeight;
     var bottomEdge = 500 - pinHeight / 2 - pickHeight;
+    var leftEdge = body.offsetLeft + 35;
+    var rightEdge = body.offsetLeft - 35 + body.offsetWidth;
 
     if (newPosition.y < topEdge) {
       newPosition.y = topEdge;
     } else if (newPosition.y > bottomEdge) {
       newPosition.y = bottomEdge;
+    }
+
+    if (newPosition.x < leftEdge) {
+      newPosition.x = leftEdge;
+    } else if (newPosition.x > rightEdge) {
+      newPosition.x = rightEdge;
     }
 
     window.mainPin.style.top = newPosition.y + 'px';
