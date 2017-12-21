@@ -25,5 +25,6 @@
       popupClose.removeEventListener('click', window.showCard.closePopup);
     }
   };
+
   window.helpers.hideElement(popup);
 })();
