@@ -8,9 +8,7 @@
 
   var addPictures = function (element, object) {
     var picturesList = element.querySelector('.popup__pictures');
-    var pictureWrap = element.querySelector('.popup__pictures li');
-
-    picturesList.removeChild(pictureWrap);
+    picturesList.innerHTML = '';
 
     for (var i = 0; i < object.offer.photos.length; i++) {
       var item = document.createElement('li');
