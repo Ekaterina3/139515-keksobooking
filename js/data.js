@@ -24,7 +24,7 @@
   var CHECKOUTS = ['12:00', '13:00', '14:00'];
   var FEATURES = ['wifi', 'dishwasher', 'parking', 'washer', 'elevator', 'conditioner'];
   var COUNT = 8;
-  var AVATARS = [];
+  var avatars = [];
 
   window.offers = [];
 
@@ -34,7 +34,7 @@
 
     return {
       author: {
-        avatar: window.helpers.getUniqueRandomValue(AVATARS),
+        avatar: window.helpers.getUniqueRandomValue(avatars),
       },
       offer: {
         title: window.helpers.getUniqueRandomValue(TITLES),
@@ -57,7 +57,7 @@
   };
 
   for (var i = 0; i < COUNT; i++) {
-    AVATARS.push('img/avatars/user0' + i + '.png');
+    avatars.push('img/avatars/user0' + i + '.png');
     window.offers.push(createObject());
   }
 

@@ -1,6 +1,12 @@
 'use strict';
 
 (function () {
+  var PRICE_FROM = 10000;
+  var PRICE_TO = 50000;
+  var PIN_COUNT = 5;
+  var DEFAULT_FILTER_VALUE = 'any';
+  var FILTER_RANGES = ['low', 'middle', 'high'];
+
   var noticeForm = document.querySelector('.notice__form');
   var noticeFormFieldsets = noticeForm.querySelectorAll('fieldset');
   window.window.mainPin = window.map.querySelector('.map__pin--main');
@@ -11,10 +17,6 @@
   var guestsHousing = document.querySelector('#housing-guests');
   var featuresHousing = document.querySelectorAll('#housing-features input[type="checkbox"]');
   var dataCopy = [];
-
-  var PRICE_FROM = 10000;
-  var PRICE_TO = 50000;
-  var PIN_COUNT = 5;
 
   var renderAllPins = function (data) {
     var fragment = document.createDocumentFragment();
@@ -59,7 +61,7 @@
     window.pin.removeAllPins(mapPins);
 
     var selectFilter = function (control, type) {
-      if (control.value !== 'any') {
+      if (control.value !== DEFAULT_FILTER_VALUE) {
         filteredData = filteredData.filter(function (pinData) {
           return pinData.offer[type].toString() === control.value;
         });
@@ -70,11 +72,11 @@
     var rangeFilter = function (control) {
       filteredData = filteredData.filter(function (pinData) {
         switch (control.value) {
-          case 'low':
+          case FILTER_RANGES[0]:
             return pinData.offer.price <= PRICE_FROM;
-          case 'middle':
+          case [1]:
             return pinData.offer.price > PRICE_FROM && pinData.offer.price < PRICE_TO;
-          case 'high':
+          case FILTER_RANGES[2]:
             return pinData.offer.price >= PRICE_TO;
           default:
             return true;

@@ -16,7 +16,6 @@
   var capacity = noticeForm.querySelector('#capacity');
   var submit = noticeForm.querySelector('.form__submit');
   var inputs = noticeForm.querySelectorAll('input');
-  // var image = noticeForm.querySelector('#images');
 
   var syncValues = function (element, value) {
     element.value = value;
