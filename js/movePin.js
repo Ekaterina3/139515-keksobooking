@@ -2,6 +2,7 @@
 
 (function () {
   var body = document.querySelector('body');
+  var mainPin = document.querySelector('.map__pin--main');
 
   var getStartCoords = function (evt) {
     return {
@@ -20,8 +21,8 @@
     var pickHeight = 16;
 
     var newPosition = {
-      x: window.mainPin.offsetLeft - shift.x,
-      y: window.mainPin.offsetTop - shift.y
+      x: mainPin.offsetLeft - shift.x,
+      y: mainPin.offsetTop - shift.y
     };
 
     var pickCoords = {
@@ -46,8 +47,8 @@
       newPosition.x = rightEdge;
     }
 
-    window.mainPin.style.top = newPosition.y + 'px';
-    window.mainPin.style.left = newPosition.x + 'px';
+    mainPin.style.top = newPosition.y + 'px';
+    mainPin.style.left = newPosition.x + 'px';
 
     var address = document.querySelector('#address');
     address.value = pickCoords.x + ', ' + pickCoords.y;
@@ -73,5 +74,5 @@
     document.addEventListener('mouseup', onMouseUp);
   };
 
-  window.mainPin.addEventListener('mousedown', onMainPinMouseDown);
+  mainPin.addEventListener('mousedown', onMainPinMouseDown);
 })();

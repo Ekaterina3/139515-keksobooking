@@ -15,6 +15,7 @@
   var roomNumber = noticeForm.querySelector('#room_number');
   var capacity = noticeForm.querySelector('#capacity');
   var submit = noticeForm.querySelector('.form__submit');
+  var reset = noticeForm.querySelector('.form__reset');
   var inputs = noticeForm.querySelectorAll('input');
   // var image = noticeForm.querySelector('#images');
 
@@ -39,11 +40,13 @@
   };
 
   var getCapacity = function () {
+    var capacityValue;
     var option = roomNumber.options[roomNumber.selectedIndex];
     var selectedValue = option.value;
 
+
     for (var i = 0; i < roomNumber.options.length; i++) {
-      var capacityValue = capacity.options[i].value;
+      capacityValue = capacity.options[i].value;
       capacity.options[i].disabled = true;
 
       if (selectedValue === '100' && capacityValue === '0') {
@@ -65,10 +68,11 @@
   };
 
   var checkValidity = function () {
+    var input;
     var errorsNumber = 0;
 
     for (var i = 0; i < inputs.length; i++) {
-      var input = inputs[i];
+      input = inputs[i];
       if (input.checkValidity() === false) {
         input.style.borderColor = 'red';
         errorsNumber++;
@@ -87,6 +91,11 @@
     checkValidity();
   };
 
+  var onResetClick = function (evt) {
+    evt.preventDefault();
+    resetForm();
+  };
+
   window.synchronizeFormFields = function () {
     window.synchronizeFields(roomNumber, capacity, ROOMS, GUESTS, syncValues);
     window.synchronizeFields(timeOut, timeIn, TIME_VALUES, TIME_VALUES, syncValues);
@@ -101,4 +110,5 @@
   roomNumber.addEventListener('change', onRoomNumberChange);
   getCapacity();
   submit.addEventListener('click', onSubmitClick);
+  reset.addEventListener('click', onResetClick);
 })();

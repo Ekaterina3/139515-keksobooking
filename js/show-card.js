@@ -2,20 +2,14 @@
 
 (function () {
   var ESCAPE_KEYCODE = 27;
-  window.popup = document.querySelector('.popup');
+  var popup = document.querySelector('.popup');
   var popupClose = document.querySelector('.popup__close');
 
-  window.hideElement = function (elem) {
-    elem.classList.add('hidden');
-  };
-
-  window.showElement = function (elem) {
-    elem.classList.remove('hidden');
-  };
+  window.helpers.hideElement(popup);
 
   window.showCard = {
-    show: function () {
-      window.showElement(window.popup);
+    show: function (elem) {
+      window.helpers.showElement(elem);
       popupClose.addEventListener('click', window.showCard.closePopup);
     },
 
@@ -26,12 +20,12 @@
     },
 
     closePopup: function () {
-      window.hideElement(window.popup);
+      window.helpers.hideElement(popup);
       window.pin.changeActivePins();
       window.card.renderCard(null);
       document.removeEventListener('keydown', window.showCard.onPopupEscape);
       popupClose.removeEventListener('click', window.showCard.closePopup);
     }
   };
-  window.hideElement(window.popup);
+
 })();

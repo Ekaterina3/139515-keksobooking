@@ -1,31 +1,32 @@
 'use strict';
 
 (function () {
-  window.map = document.querySelector('.map');
+  var map = document.querySelector('.map');
   var cardTemplate = document.querySelector('template').content.querySelector('.map__card');
   var cardElement = cardTemplate.cloneNode(true);
   var featureListItems = cardElement.querySelectorAll('.feature');
 
   var addPictures = function (element, object) {
+    var item, picture;
     var picturesList = element.querySelector('.popup__pictures');
-    var pictureWrap = element.querySelector('.popup__pictures li');
-
-    picturesList.removeChild(pictureWrap);
+    picturesList.innerHTML = '';
 
     for (var i = 0; i < object.offer.photos.length; i++) {
-      var item = document.createElement('li');
-      var picture = document.createElement('img');
+      item = document.createElement('li');
+      picture = document.createElement('img');
+      picture.src = object.offer.photos[i];
 
       picturesList.appendChild(item);
       item.appendChild(picture);
-      picture.src = object.offer.photos[i];
     }
   };
+
+  map.insertBefore(cardElement, document.querySelector('map__filters-container'));
 
   window.card = {
     fillFeatures: function (pinData) {
       for (var i = 0; i < featureListItems.length; i++) {
-        featureListItems[i].classList.add('hidden');
+        window.helpers.hideElement (  featureListItems[i] );
       }
 
       for (var j = 0; j < pinData.offer.features.length; j++) {
@@ -48,10 +49,10 @@
         cardElement.querySelector('.map__card ul + p').textContent = pinData.offer.description;
         cardElement.querySelector('.popup__avatar').src = pinData.author.avatar;
         addPictures(cardElement, pinData);
-        window.card.fillFeatures(pinData);
+        
+        this.fillFeatures(pinData);
       }
     }
   };
 
-  window.map.insertBefore(cardElement, document.querySelector('map__filters-container'));
 })();

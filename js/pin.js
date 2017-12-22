@@ -21,8 +21,12 @@
       if (elem) {
         elem.classList.add('map__pin--active');
       }
-
       activePin = elem;
+    },
+    removeAllPins: function (array) {
+      array.forEach(function (elem) {
+        elem.remove();
+      });
     }
   };
 })();

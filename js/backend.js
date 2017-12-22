@@ -46,6 +46,9 @@
       message.style = 'z-index: 100; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 600px; padding: 30px; text-align: center; font-size: 28px; color: white; border: 1px solid red; background-color: #fa9';
       message.textContent = errorMessage;
       document.body.insertAdjacentElement('afterbegin', message);
+      window.setTimeout(function () {
+        message.remove();
+      }, 3000);
     }
   };
 })();

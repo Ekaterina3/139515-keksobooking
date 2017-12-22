@@ -122,7 +122,7 @@
 
       <fieldset class="form__element">
         <label for="price">Цена за ночь, руб.</label>
-        <input id="price" name="price" type="number" placeholder="5000" min="0" max="1000000" value="1000">
+        <input id="price" name="price" type="number" placeholder="5000" min="0" max="1000000" required>
       </fieldset>
 
       <fieldset class="form__element">
@@ -246,6 +246,7 @@
 </template>
 
 <script src="js/helpers.js"></script>
+<script src="js/debounce.js"></script>
 <script src="js/translate.js"></script>
 <script src="js/backend.js"></script>
 <script src="js/pin.js"></script>
