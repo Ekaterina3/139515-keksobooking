@@ -17,6 +17,7 @@
   var submit = noticeForm.querySelector('.form__submit');
   var reset = noticeForm.querySelector('.form__reset');
   var inputs = noticeForm.querySelectorAll('input');
+  // var image = noticeForm.querySelector('#images');
 
   var syncValues = function (element, value) {
     element.value = value;
