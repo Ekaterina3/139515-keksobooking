@@ -7,23 +7,26 @@
   var featureListItems = cardElement.querySelectorAll('.feature');
 
   var addPictures = function (element, object) {
+    var item, picture;
     var picturesList = element.querySelector('.popup__pictures');
     picturesList.innerHTML = '';
 
     for (var i = 0; i < object.offer.photos.length; i++) {
-      var item = document.createElement('li');
-      var picture = document.createElement('img');
+      item = document.createElement('li');
+      picture = document.createElement('img');
+      picture.src = object.offer.photos[i];
 
       picturesList.appendChild(item);
       item.appendChild(picture);
-      picture.src = object.offer.photos[i];
     }
   };
+
+  map.insertBefore(cardElement, document.querySelector('map__filters-container'));
 
   window.card = {
     fillFeatures: function (pinData) {
       for (var i = 0; i < featureListItems.length; i++) {
-        featureListItems[i].classList.add('hidden');
+        window.helpers.hideElement (  featureListItems[i] );
       }
 
       for (var j = 0; j < pinData.offer.features.length; j++) {
@@ -51,5 +54,4 @@
     }
   };
 
-  map.insertBefore(cardElement, document.querySelector('map__filters-container'));
 })();

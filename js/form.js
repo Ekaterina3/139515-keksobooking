@@ -38,11 +38,13 @@
   };
 
   var getCapacity = function () {
+    var capacityValue;
     var option = roomNumber.options[roomNumber.selectedIndex];
     var selectedValue = option.value;
 
+
     for (var i = 0; i < roomNumber.options.length; i++) {
-      var capacityValue = capacity.options[i].value;
+      capacityValue = capacity.options[i].value;
       capacity.options[i].disabled = true;
 
       if (selectedValue === '100' && capacityValue === '0') {
@@ -64,10 +66,11 @@
   };
 
   var checkValidity = function () {
+    var input;
     var errorsNumber = 0;
 
     for (var i = 0; i < inputs.length; i++) {
-      var input = inputs[i];
+      input = inputs[i];
       if (input.checkValidity() === false) {
         input.style.borderColor = 'red';
         errorsNumber++;

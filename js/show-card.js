@@ -5,6 +5,8 @@
   var popup = document.querySelector('.popup');
   var popupClose = document.querySelector('.popup__close');
 
+  window.helpers.hideElement(popup);
+
   window.showCard = {
     show: function (elem) {
       window.helpers.showElement(elem);
@@ -26,5 +28,4 @@
     }
   };
 
-  window.helpers.hideElement(popup);
 })();
