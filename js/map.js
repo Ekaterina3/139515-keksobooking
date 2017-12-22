@@ -109,6 +109,7 @@
     selectFilter(guestsHousing, 'guests');
     checkboxFilter(featuresHousing);
     renderAllPins(filteredData);
+    window.helpers.hideElement(popup);
 
     var newPins = document.querySelectorAll('.map__pin:not(.map__pin--main)');
 
