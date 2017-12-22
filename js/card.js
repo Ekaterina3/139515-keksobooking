@@ -7,7 +7,8 @@
   var featureListItems = cardElement.querySelectorAll('.feature');
 
   var addPictures = function (element, object) {
-    var item, picture;
+    var item;
+    var picture;
     var picturesList = element.querySelector('.popup__pictures');
     picturesList.innerHTML = '';
 
@@ -26,7 +27,7 @@
   window.card = {
     fillFeatures: function (pinData) {
       for (var i = 0; i < featureListItems.length; i++) {
-        window.helpers.hideElement (  featureListItems[i] );
+        window.helpers.hideElement(featureListItems[i]);
       }
 
       for (var j = 0; j < pinData.offer.features.length; j++) {
@@ -49,7 +50,6 @@
         cardElement.querySelector('.map__card ul + p').textContent = pinData.offer.description;
         cardElement.querySelector('.popup__avatar').src = pinData.author.avatar;
         addPictures(cardElement, pinData);
-        
         this.fillFeatures(pinData);
       }
     }
