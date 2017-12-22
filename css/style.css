@@ -451,8 +451,24 @@ textarea:focus
 .popup__pictures li
 {
     display: inline-block;
-
     vertical-align: middle;
+    width: 48px;
+    height: 48px;
+    margin-right: 5px;
+    margin-bottom: 5px;
+    overflow: hidden;
+}
+
+.popup__pictures li:nth-child(4n)
+{
+    margin-right: 0;
+}
+
+.popup__pictures li img
+{
+    max-width: 100%;
+    width: 100%;
+    height: auto;
 }
 
 .popup__avatar
