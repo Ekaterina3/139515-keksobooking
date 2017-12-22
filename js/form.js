@@ -15,6 +15,7 @@
   var roomNumber = noticeForm.querySelector('#room_number');
   var capacity = noticeForm.querySelector('#capacity');
   var submit = noticeForm.querySelector('.form__submit');
+  var reset = noticeForm.querySelector('.form__reset');
   var inputs = noticeForm.querySelectorAll('input');
 
   var syncValues = function (element, value) {
@@ -89,6 +90,11 @@
     checkValidity();
   };
 
+  var onResetClick = function (evt) {
+    evt.preventDefault();
+    resetForm();
+  };
+
   window.synchronizeFormFields = function () {
     window.synchronizeFields(roomNumber, capacity, ROOMS, GUESTS, syncValues);
     window.synchronizeFields(timeOut, timeIn, TIME_VALUES, TIME_VALUES, syncValues);
@@ -103,4 +109,5 @@
   roomNumber.addEventListener('change', onRoomNumberChange);
   getCapacity();
   submit.addEventListener('click', onSubmitClick);
+  reset.addEventListener('click', onResetClick);
 })();
