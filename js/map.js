@@ -120,7 +120,7 @@
         window.showCard.show(popup);
         document.addEventListener('keydown', window.showCard.onPopupEscape);
 
-      });  
+      });
     });
   };
 
