@@ -35,6 +35,7 @@
     dataCopy = data.slice();
 
     var activateMap = function () {
+      mainPin.style.zIndex = 2;
       map.classList.remove('map--faded');
       mainPin.removeEventListener('click', activateMap);
 
@@ -65,7 +66,8 @@
   var updatePins = function () {
     var filteredData = dataCopy;
     var mapPins = document.querySelectorAll('.map__pin:not(.map__pin--main)');
-    window.pin.removeAllPins(mapPins);
+    var mapPinsArray = Array.prototype.slice.call(mapPins);
+    window.pin.removeAllPins(mapPinsArray);
 
     var selectFilter = function (control, type) {
       if (control.value !== DEFAULT_FILTER_VALUE) {
@@ -80,9 +82,9 @@
       filteredData = filteredData.filter(function (pinData) {
         switch (control.value) {
           case FILTER_RANGES[0]:
-            return pinData.offer.price <= PRICE_FROM;
+            return pinData.offer.price < PRICE_FROM;
           case FILTER_RANGES[1]:
-            return pinData.offer.price > PRICE_FROM && pinData.offer.price < PRICE_TO;
+            return pinData.offer.price >= PRICE_FROM && pinData.offer.price < PRICE_TO;
           case FILTER_RANGES[2]:
             return pinData.offer.price >= PRICE_TO;
           default:

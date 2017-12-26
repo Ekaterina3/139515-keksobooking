@@ -3,6 +3,8 @@
 (function () {
   var ROOMS_WORD_FORM = ['комнат', 'комната', 'комнаты'];
   var GUESTS_WORD_FORM = ['гостей', 'гостя'];
+  var TYPE_VALUES = ['flat', 'bungalo', 'house', 'palace'];
+  var TYPE_VALUES_RUS = ['Квартира', 'Бунгало', 'Дом', 'Дворец'];
 
   window.translate = {
     translateRooms: function (count) {
@@ -26,6 +28,10 @@
         default:
           return GUESTS_WORD_FORM[0];
       }
+    },
+
+    translateOfferType: function (type) {
+      return TYPE_VALUES_RUS[TYPE_VALUES.indexOf(type)];
     }
   };
 })();

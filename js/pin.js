@@ -1,6 +1,7 @@
 'use strict';
 
 (function () {
+  var map = document.querySelector('.map');
   var pinsTemplate = document.querySelector('template').content.querySelector('.map__pin');
   var activePin;
 
@@ -25,7 +26,7 @@
     },
     removeAllPins: function (array) {
       array.forEach(function (elem) {
-        elem.remove();
+        map.removeChild(elem);
       });
     }
   };

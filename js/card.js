@@ -40,7 +40,7 @@
         cardElement.querySelector('.map__card h3').textContent = pinData.offer.title;
         cardElement.querySelector('.map__card p small').textContent = pinData.offer.address;
         cardElement.querySelector('.popup__price').textContent = pinData.offer.price + ' ₽/ночь';
-        cardElement.querySelector('.map__card h4').textContent = pinData.offer.type.title;
+        cardElement.querySelector('.map__card h4').textContent = window.translate.translateOfferType(pinData.offer.type);
 
         var endForRooms = window.translate.translateRooms(pinData.offer.rooms);
         var endForGuests = window.translate.translateGuests(pinData.offer.guests);
